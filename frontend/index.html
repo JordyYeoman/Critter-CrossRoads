@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Critter Crossroads - Gobble and Gallop</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./assets/favicon-32x32.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="star-container">
+        <div id="star-pattern"></div>
+        <div id="star-gradient-overlay"></div>
+    </div>
+    <main id="content-container">
+        <h1 id="home-heading-text" class="sixty-four-font">Critter <br /> Crossroads <br />
+            <div id="home-heading-sub-text">Gobble n Gallop</div>
+        </h1>
+        <div id="home-startup-form">
+            <form id="home-form">
+                <label name="join">Join Game by ID</label>
+                <input type="text" name="join" />
+                <input type="submit" />
+            </form>
+            <button onclick="startNewGame()">Start a new game</button>
+        </div>
+        <div id="game">
+            <canvas class="game-canvas"></canvas>
+        </div>
+    </main>
+    <script src="index.js"></script>
+</body>
+<style>
+    @font-face {
+        font-family: 'Sixtyfour';
+        src: url('./assets//fonts/Sixtyfour/Sixtyfour-Regular-VariableFont_BLED\,SCAN.ttf');
+    }
+
+    #game {
+        width: 100%;
+        height: 540px;
+        background-color: white;
+        margin-top: 32px;
+        padding: 2px;
+        border-radius: 12px;
+    }
+
+    .game-canvas {
+        width: 100%;
+        height: 100%;
+        background: lightslategray;
+        border-radius: 12px;
+    }
+
+    :root {
+        --glow-rgb: 245 245 245;
+
+        --light-gold-rgb: 249 181 51;
+        --dark-gold-rgb: 215 147 23;
+
+        --primary-stripe-rgb: 230 230 230;
+        --secondary-stripe-rgb: 240 240 240;
+
+        /* Z - index stacking */
+        --background-z: 1;
+        --background-overlay-z: 2;
+        --content-z: 3;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    @keyframes pan {
+        0% {
+            background-position: 0% 0%;
+        }
+
+        100% {
+            background-position: 100% 0%;
+        }
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #star-container {
+        background: radial-gradient(rgb(var(--light-gold-rgb)), rgb(var(--dark-gold-rgb)));
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+    }
+
+    #star-pattern {
+        background-image: url("./assets/Star+Pattern+3.svg");
+        background-size: 10%;
+        position: absolute;
+        left: 50%;
+        top: 0px;
+        translate: -50% 0%;
+        z-index: var(--background-z);
+        height: 100%;
+        width: 100%;
+        min-width: 1200px;
+        opacity: 0.10;
+        animation: pan 180s linear infinite;
+        will-change: background-position;
+    }
+
+    #star-gradient-overlay {
+        background: radial-gradient(circle, transparent 75%, rgb(var(--dark-gold-rgb)));
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        opacity: 0.9;
+        z-index: var(--background-overlay-z);
+    }
+
+    #home-heading-text {
+        text-align: center;
+        font-size: 52px;
+        line-height: 64px;
+    }
+
+    #home-heading-sub-text {
+        font-size: 28px;
+        margin-top: -8px;
+    }
+
+    #home-startup-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #home-form {
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #content-container {
+        z-index: var(--content-z);
+    }
+
+    .sixty-four-font {
+        font-family: "Sixtyfour", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: -2px;
+        font-variation-settings:
+            "BLED" 0,
+            "SCAN" 0;
+    }
+</style>
+<script>
+    const startNewGame = () => {
+        console.log('[DEBUG] Yo dude?');
+    }
+</script>
+
+</html>
